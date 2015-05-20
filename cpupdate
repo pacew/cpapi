@@ -1,0 +1,22 @@
+#! /usr/bin/php
+<?php /* -*- mode:php -*- */
+
+require_once ("cpapi.php");
+
+$argc = $_SERVER['argc'];
+$argv = $_SERVER['argv'];
+
+if ($argc < 2) {
+	printf ("cpupdate asset_id\n");
+	exit (1);
+}
+
+$asset_id = intval ($argv[1]);
+
+cpapi_connect ();
+
+$fields = array ();
+$fields['foo3'] = NULL;
+
+$val = cpapi_update ($asset_id, $fields);
+printf ("%s\n", prettyprint_json ($val));
